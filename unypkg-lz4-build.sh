@@ -77,12 +77,9 @@ get_include_paths
 
 unset LD_RUN_PATH
 
-./configure \
-    --prefix=/uny/pkg/"$pkgname"/"$pkgver"
-
-make -j"$(nproc)"
-make -j"$(nproc)" check 
-make -j"$(nproc)" install
+make BUILD_STATIC=no PREFIX=/uny/pkg/"$pkgname"/"$pkgver" -j"$(nproc)"
+make -j1 check
+make BUILD_STATIC=no PREFIX=/uny/pkg/"$pkgname"/"$pkgver" -j"$(nproc)" install
 
 ####################################################
 ### End of individual build script
